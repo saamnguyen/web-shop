@@ -3,6 +3,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 import useStyles from "./styles";
 import CartItem from "./CartItem/CartItem";
@@ -15,6 +16,9 @@ const Cart = ({ cart }) => {
 	const EmptyCart = () => (
 		<Typography variant="subtitle1">
 			You have no items in your shopping cart, start adding some!
+			<Link className={classes.link} to="/">
+				start adding some
+			</Link>
 		</Typography>
 	);
 

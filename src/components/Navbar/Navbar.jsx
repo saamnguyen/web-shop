@@ -14,13 +14,15 @@ import useStyles from "./styles";
 
 const Navbar = ({ totalItems }) => {
 	const classes = useStyles();
+	const location = useLocation();
 
 	return (
 		<>
 			<AppBar position="fixed" className={classes.appBar} color="inherit">
 				<Toolbar>
 					<Typography
-						component=""
+						component={Link}
+						to="/"
 						className={classes.title}
 						variant="h6"
 						color="inherit"
@@ -34,13 +36,20 @@ const Navbar = ({ totalItems }) => {
 						Commerce.js
 					</Typography>
 					<div className={classes.grow} />
-					<div className={classes.button}>
-						<IconButton aria-label="Show cart items" color="inherit">
-							<Badge badgeContent={totalItems} color="secondary">
-								<ShoppingCart />
-							</Badge>
-						</IconButton>
-					</div>
+					{location.pathname === "/" && (
+						<div className={classes.button}>
+							<IconButton
+								aria-label="Show cart items"
+								color="inherit"
+								component={Link}
+								to="/cart"
+							>
+								<Badge badgeContent={totalItems} color="secondary">
+									<ShoppingCart />
+								</Badge>
+							</IconButton>
+						</div>
+					)}
 				</Toolbar>
 			</AppBar>
 		</>
