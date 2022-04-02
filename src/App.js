@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import Products from "./components/Products/Products";
 // import Navbar from "./components/Navbar/Navbar";
 
-import { Products, Navbar, Cart } from "./components";
+import { Products, Navbar, Cart, Checkout } from "./components";
 import { commerce } from "./lib/commerce";
 
 const App = () => {
@@ -82,6 +82,7 @@ const App = () => {
 							/>
 						}
 					/>
+					<Route path="/checkout" element={<Checkout />} />
 				</Routes>
 			</div>
 		</Router>
