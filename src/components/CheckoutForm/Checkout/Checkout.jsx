@@ -31,8 +31,8 @@ const Checkout = ({ cart }) => {
 				const token = await commerce.checkout.generateToken(cart.id, {
 					type: "cart",
 				});
-				console.log("Token: ");
-				console.log(token);
+				// console.log("Token: ");
+				// console.log(token);
 				setCheckoutToken(token);
 			} catch {}
 		};
@@ -56,7 +56,7 @@ const Checkout = ({ cart }) => {
 				next={next}
 			/>
 		) : (
-			<PaymentForm shippingData={shippingData} />
+			<PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} />
 		);
 
 	return (
