@@ -4,15 +4,22 @@ import Grid from "@mui/material/Grid";
 import { useFormContext, Controller } from "react-hook-form";
 
 const FormInput = ({ name, label, required }) => {
-	const { control } = useFormContext();
+	const methods = useFormContext();
 	// const isError = false;
 
 	return (
 		<Grid item xs={12} sm={6}>
 			<Controller
+				control={methods.control}
 				name={name}
-				control={control}
-				render={({ field }) => <TextField fullWidth label={label} required />}
+				render={({ field }) => (
+					<TextField
+						fullWidth
+						label={label}
+						required
+						{...methods.register(name)}
+					/>
+				)}
 			/>
 		</Grid>
 	);

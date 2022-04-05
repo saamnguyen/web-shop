@@ -20,6 +20,20 @@ const AddressForm = ({ checkoutToken, next }) => {
 	const [shippingOption, setShippingOption] = useState("");
 	const methods = useForm();
 
+	const { register } = useForm();
+
+	const onSubmit = (data) => {
+		console.log("onSubmit:");
+		console.log(data);
+	};
+
+	// console.log("Country");
+	// console.log(shippingCountry);
+	// console.log("Sub");
+	// console.log(shippingSubdivision);
+	// console.log("shippingOption");
+	// console.log(shippingOption);
+
 	// const countries1 = Object.entries(shippingCountries);
 	// console.log(countries1);
 
@@ -63,6 +77,11 @@ const AddressForm = ({ checkoutToken, next }) => {
 
 		setShippingSubdivisions(subdivisions);
 		setShippingSubdivision(Object.keys(subdivisions)[0]);
+		console.log("Subdivis");
+		console.log(subdivisions);
+
+		console.log("Subdivi");
+		console.log(shippingSubdivision);
 	};
 
 	const fetchShippingOptions = async (
@@ -74,9 +93,15 @@ const AddressForm = ({ checkoutToken, next }) => {
 			checkoutTokenId,
 			{ country, region }
 		);
+		console.log("Options: ");
+		console.log(options);
 
 		setShippingOptions(options);
 		setShippingOption(options[0].id);
+		console.log("shippingOption:");
+		console.log(shippingOption);
+		console.log("shippingOptions:");
+		console.log(shippingOptions);
 	};
 
 	useEffect(() => {
@@ -103,19 +128,26 @@ const AddressForm = ({ checkoutToken, next }) => {
 			</Typography>
 			<FormProvider {...methods}>
 				<form
-					onSubmit={methods.handleSubmit((data) =>
+					onSubmit={methods.handleSubmit((data) => {
 						next({
 							...data,
 							shippingCountry,
 							shippingSubdivision,
 							shippingOption,
-						})
-					)}
+						});
+						console.log("AddressForm");
+						console.log({
+							...data,
+							shippingCountry,
+							shippingSubdivision,
+							shippingOption,
+						});
+					})}
 				>
 					<Grid container spacing={3}>
 						<FormInput required name="firstName" label="First Name" />
 						<FormInput required name="lastName" label="Last Name" />
-						<FormInput required name="address1" label="Address line 1" />
+						<FormInput required name="address1" label="Address" />
 						<FormInput required name="email" label="Email" />
 						<FormInput required name="city" label="City" />
 						<FormInput required name="zip" label="Zip / Postal code" />

@@ -20,6 +20,11 @@ const PaymentForm = ({
 	onCaptureCheckout,
 	shippingData,
 }) => {
+	console.log("PaymentForm");
+	console.log(checkoutToken);
+
+	console.log("shippingData");
+	console.log(shippingData);
 	const handleSubmit = async (event, elements, stripe) => {
 		event.preventDefault();
 
@@ -32,21 +37,24 @@ const PaymentForm = ({
 			card: cardElement,
 		});
 
+		console.log("PayMethod: ");
+		console.log(paymentMethod);
+
 		if (error) {
 			console.log("[error]", error);
 		} else {
 			const orderData = {
 				line_items: checkoutToken.live.line_items,
 				customer: {
-					firstname: shippingData.firstname,
-					lastname: shippingData.lastname,
+					firstname: shippingData.firstName,
+					lastname: shippingData.lastName,
 					email: shippingData.email,
 				},
 				shipping: {
 					name: "International",
 					street: shippingData.address1,
 					town_city: shippingData.city,
-					country_state: shippingData.shippingSubdivision,
+					county_state: shippingData.shippingSubdivision,
 					postal_zip_code: shippingData.zip,
 					country: shippingData.shippingCountry,
 				},
@@ -58,9 +66,10 @@ const PaymentForm = ({
 					},
 				},
 			};
-			onCaptureCheckout(checkoutToken.id, orderData);
-
+			console.log("Order data:");
+			console.log(orderData);
 			nextStep();
+			onCaptureCheckout(checkoutToken.id, orderData);
 		}
 	};
 
