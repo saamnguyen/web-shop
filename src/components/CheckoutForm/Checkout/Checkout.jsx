@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
 import { Link } from "react-router-dom";
 
 import useStyles from "./styles";
@@ -109,8 +110,9 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
 
 	return (
 		<>
+			<CssBaseline />
 			<div className={classes.toolbar} />
-			<main className={classes.layout}>
+			<main className={classes.layout} style={{ padding: "50px 20px 0" }}>
 				<Paper className={classes.paper}>
 					<Typography variant="h4" align="center">
 						Checkout
