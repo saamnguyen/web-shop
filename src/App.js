@@ -51,6 +51,8 @@ const App = () => {
 
 	const refreshCart = async () => {
 		const newCart = await commerce.cart.refresh();
+		console.log("New Cart");
+		console.log(newCart);
 		setCart(newCart);
 	};
 
@@ -60,11 +62,20 @@ const App = () => {
 				checkoutTokenId,
 				newOrder
 			);
+			console.log("incomingOrder: ");
+			console.log(incomingOrder);
+			console.log("Cart fresh: ");
+			console.log(cart);
 
 			setOrder(incomingOrder);
+			console.log("Order APP");
+			console.log(order);
 
 			refreshCart();
+			console.log("Cart fresh: ");
+			console.log(cart);
 		} catch (error) {
+			console.log("Error Capture");
 			setErrorMessage(error.data.error.message);
 		}
 	};
@@ -75,6 +86,7 @@ const App = () => {
 	}, []);
 
 	//console.log(products);
+	console.log("Cart APP:");
 	console.log(cart);
 
 	return (

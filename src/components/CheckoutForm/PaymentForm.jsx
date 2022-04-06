@@ -20,8 +20,12 @@ const PaymentForm = ({
 	onCaptureCheckout,
 	shippingData,
 }) => {
-	console.log("PaymentForm");
-	console.log(checkoutToken);
+	const options = {
+		// passing the client secret obtained from the server
+		clientSecret: process.env.REACT_APP_STRIPE_PRIVATE_KEY,
+	};
+	// console.log("PaymentForm");
+	// console.log(checkoutToken);
 
 	console.log("shippingData");
 	console.log(shippingData);
@@ -42,7 +46,9 @@ const PaymentForm = ({
 
 		if (error) {
 			console.log("[error]", error);
-		} else {
+			return;
+		}
+		try {
 			const orderData = {
 				line_items: checkoutToken.live.line_items,
 				customer: {
@@ -68,8 +74,12 @@ const PaymentForm = ({
 			};
 			console.log("Order data:");
 			console.log(orderData);
-			nextStep();
+
 			onCaptureCheckout(checkoutToken.id, orderData);
+			nextStep();
+		} catch (response) {
+			console.log(response);
+			return;
 		}
 	};
 
@@ -93,8 +103,8 @@ const PaymentForm = ({
 								<Button
 									type="submit"
 									variant="contained"
-									color="primary"
 									disabled={!stripe}
+									color="primary"
 								>
 									Pay {checkoutToken.live.subtotal.formatted_with_symbol}
 								</Button>
