@@ -8,7 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useStyles from "./styles";
 import AddressForm from "../AddressForm";
@@ -24,6 +24,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
 	// console.log(activeStep);
 
 	const classes = useStyles();
+	let navigate = useNavigate();
 
 	const nextStep = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -43,7 +44,9 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
 				// console.log("Token: ");
 				// console.log(token);
 				setCheckoutToken(token);
-			} catch {}
+			} catch (error) {
+				navigate("/");
+			}
 		};
 		generateToken();
 	}, [cart]);

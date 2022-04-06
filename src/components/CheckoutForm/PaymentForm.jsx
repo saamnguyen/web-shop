@@ -27,8 +27,8 @@ const PaymentForm = ({
 	// console.log("PaymentForm");
 	// console.log(checkoutToken);
 
-	console.log("shippingData");
-	console.log(shippingData);
+	// console.log("shippingData");
+	// console.log(shippingData);
 	const handleSubmit = async (event, elements, stripe) => {
 		event.preventDefault();
 
@@ -41,8 +41,8 @@ const PaymentForm = ({
 			card: cardElement,
 		});
 
-		console.log("PayMethod: ");
-		console.log(paymentMethod);
+		// console.log("PayMethod: ");
+		// console.log(paymentMethod);
 
 		if (error) {
 			console.log("[error]", error);
@@ -72,8 +72,8 @@ const PaymentForm = ({
 					},
 				},
 			};
-			console.log("Order data:");
-			console.log(orderData);
+			// console.log("Order data:");
+			// console.log(orderData);
 
 			onCaptureCheckout(checkoutToken.id, orderData);
 			nextStep();

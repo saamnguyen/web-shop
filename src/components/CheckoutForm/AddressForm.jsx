@@ -161,7 +161,7 @@ const AddressForm = ({ checkoutToken, next }) => {
 								{Object.entries(shippingCountries)
 									.map(([code, name]) => ({ id: code, label: name }))
 									.map((item) => (
-										<MenuItem key={item.key} value={item.id}>
+										<MenuItem key={item.id} value={item.id}>
 											{item.label}
 										</MenuItem>
 									))}
@@ -176,7 +176,7 @@ const AddressForm = ({ checkoutToken, next }) => {
 								onChange={(e) => setShippingSubdivision(e.target.value)}
 							>
 								{subdivisions.map((subdivision) => (
-									<MenuItem key={subdivision.key} value={subdivision.id}>
+									<MenuItem key={subdivision.id} value={subdivision.id}>
 										{subdivision.label}
 									</MenuItem>
 								))}
@@ -190,7 +190,7 @@ const AddressForm = ({ checkoutToken, next }) => {
 								onChange={(e) => setShippingOption(e.target.value)}
 							>
 								{options.map((option) => (
-									<MenuItem key={option.key} value={option.id}>
+									<MenuItem key={option.id} value={option.id}>
 										{option.label}
 									</MenuItem>
 								))}
